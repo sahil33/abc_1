@@ -1,0 +1,88 @@
+<div class="container-fluid"
+     fxLayout="row"
+     fxLayoutGap="10px">
+     <div>
+     <mat-card>
+        <mat-card-header>
+          <mat-card-title>Solar Cleaners Status</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <canvas baseChart
+                        [data]="doughnutChartData"
+                        [labels]="doughnutChartLabels"
+                        [chartType]="doughnutChartType"
+                        [colors]="doughnutColor"
+                        [options]="doughnutOption"
+                        [plugins]="doughnutChartPlugins">
+           </canvas>
+          
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Solar Cleaners Voltages</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- <canvas id="canvas" >{{chart}}</canvas> -->
+          <canvas baseChart
+                        [data]="doughnutChartData_second"
+                        [labels]="doughnutChartLabels_second"
+                        [chartType]="doughnutChartType_second"
+                        [colors]="doughnutColor_second"
+                        [options]="doughnutOption_second"
+                        [plugins]="doughnutChartPlugins_second">
+           </canvas>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    
+    <div>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Solar Cleaners Temperatures</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <canvas baseChart
+            [data]="doughnutChartData_third"
+            [labels]="doughnutChartLabels_third"
+            [chartType]="doughnutChartType_third"
+            [colors]="doughnutColor_third"
+            [options]="doughnutOption_third"
+            [plugins]="doughnutChartPlugins_second">
+            </canvas> 
+        </mat-card-content>
+      </mat-card>
+    </div>
+    
+    <div>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Alert</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div fxFlex>
+               Temperatures
+               Voltages
+          </div>    
+        </mat-card-content>
+      </mat-card>
+  </div>    
+</div>
+<div class="container-fluid" 
+     fxLayout="row"
+     fxLayoutGap=10px>
+
+<div> 
+    table    
+</div>
+
+<div>
+ ______Table_____ 
+</div>    
+
+</div>
+
+
+
