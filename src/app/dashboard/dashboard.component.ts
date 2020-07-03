@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Inject} from '@angular/core';
 import { ChartType } from 'chart.js';
 import { MultiDataSet, Label, PluginServiceGlobalRegistrationAndOptions } from 'ng2-charts';
 import * as Chart from 'chart.js';
+import { Device} from '../shared/device';
+import { DevicesService } from '../services/devices.service';
  
 @Component({
   selector: 'app-dashboard',
@@ -10,11 +12,19 @@ import * as Chart from 'chart.js';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
-
+  devices: Device[];
+  constructor(private devicesService: DevicesService,
+    @Inject('BaseURL') private BaseURL) { }
+  
   ngOnInit(): void {
-
+    this.devicesService.getDevices()
+    .subscribe(devices => this.devices = devices);
+    console.log(this.devices);
      }
+
+     displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+
+
   innerRadius : any;
 
   // first doughnut
@@ -45,39 +55,39 @@ export class DashboardComponent implements OnInit {
     cutoutPercentage: 75
   };
  
-  public doughnutChartPlugins: PluginServiceGlobalRegistrationAndOptions[] = [{
-    beforeDraw(chart) {
-      const ctx = chart.ctx;
-      const txt = '8 Solar Cleaners';
+  // public doughnutChartPlugins: PluginServiceGlobalRegistrationAndOptions[] = [{
+  //   beforeDraw(chart) {
+  //     const ctx = chart.ctx;
+  //     const txt = '8 Solar Cleaners';
 
-      //Get options from the center object in options
-      const sidePadding = 60;
-      const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
+  //     //Get options from the center object in options
+  //     const sidePadding = 60;
+  //     const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
 
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
-      const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+  //     ctx.textAlign = 'center';
+  //     ctx.textBaseline = 'middle';
+  //     const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+  //     const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
 
-      //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
-      const stringWidth = ctx.measureText(txt).width;
-      const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+  //     //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+  //     const stringWidth = ctx.measureText(txt).width;
+  //     const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
 
-      // Find out how much the font can grow in width.
-      const widthRatio = elementWidth / stringWidth;
-      const newFontSize = Math.floor(30 * widthRatio);
-      const elementHeight = (chart.innerRadius * 2);
+  //     // Find out how much the font can grow in width.
+  //     const widthRatio = elementWidth / stringWidth;
+  //     const newFontSize = Math.floor(30 * widthRatio);
+  //     const elementHeight = (chart.innerRadius * 2);
 
-      // Pick a new font size so it will not be larger than the height of label.
-      const fontSizeToUse = Math.min(newFontSize, elementHeight);
+  //     // Pick a new font size so it will not be larger than the height of label.
+  //     const fontSizeToUse = Math.min(newFontSize, elementHeight);
 
-      ctx.font = fontSizeToUse + 'px Arial';
-      ctx.fillStyle = 'black';
+  //     ctx.font = fontSizeToUse + 'px Arial';
+  //     ctx.fillStyle = 'black';
 
-      // Draw text in center
-      ctx.fillText('8 Solar Cleaners', centerX, centerY);
-    }
-  }];
+  //     // Draw text in center
+  //     ctx.fillText('8 Solar Cleaners', centerX, centerY);
+  //   }
+  // }];
 
 
 
@@ -100,39 +110,39 @@ public doughnutChartLabels_second = ['Normal Voltage', 'Under Voltage'];
     cutoutPercentage: 75
 
  };
- public doughnutChartPlugins_second: PluginServiceGlobalRegistrationAndOptions[] = [{
-  beforeDraw(chart) {
-    const ctx = chart.ctx;
-    const txt = '8 Solar Cleaners';
+//  public doughnutChartPlugins_second: PluginServiceGlobalRegistrationAndOptions[] = [{
+//   beforeDraw(chart) {
+//     const ctx = chart.ctx;
+//     const txt = '8 Solar Cleaners';
 
-    //Get options from the center object in options
-    const sidePadding = 60;
-    const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
+//     //Get options from the center object in options
+//     const sidePadding = 60;
+//     const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
 
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
-    const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+//     ctx.textAlign = 'center';
+//     ctx.textBaseline = 'middle';
+//     const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+//     const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
 
-    //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
-    const stringWidth = ctx.measureText(txt).width;
-    const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+//     //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+//     const stringWidth = ctx.measureText(txt).width;
+//     const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
 
-    // Find out how much the font can grow in width.
-    const widthRatio = elementWidth / stringWidth;
-    const newFontSize = Math.floor(30 * widthRatio);
-    const elementHeight = (chart.innerRadius * 2);
+//     // Find out how much the font can grow in width.
+//     const widthRatio = elementWidth / stringWidth;
+//     const newFontSize = Math.floor(30 * widthRatio);
+//     const elementHeight = (chart.innerRadius * 2);
 
-    // Pick a new font size so it will not be larger than the height of label.
-    const fontSizeToUse = Math.min(newFontSize, elementHeight);
+//     // Pick a new font size so it will not be larger than the height of label.
+//     const fontSizeToUse = Math.min(newFontSize, elementHeight);
 
-    ctx.font = fontSizeToUse + 'px Arial';
-    ctx.fillStyle = 'black';
+//     ctx.font = fontSizeToUse + 'px Arial';
+//     ctx.fillStyle = 'black';
 
-    // Draw text in center
-    ctx.fillText('8 Solar Cleaners', centerX, centerY);
-  }
-}];
+//     // Draw text in center
+//     ctx.fillText('8 Solar Cleaners', centerX, centerY);
+//   }
+// }];
 
 
 
@@ -157,37 +167,37 @@ public doughnutChartLabels_second = ['Normal Voltage', 'Under Voltage'];
    },
    cutoutPercentage: 75
   };
-  public doughnutChartPlugins_third: PluginServiceGlobalRegistrationAndOptions[] = [{
-    beforeDraw(chart) {
-      const ctx = chart.ctx;
-      const txt = '8 Solar Cleaners';
+//   public doughnutChartPlugins_third: PluginServiceGlobalRegistrationAndOptions[] = [{
+//     beforeDraw(chart) {
+//       const ctx = chart.ctx;
+//       const txt = '8 Solar Cleaners';
   
-      //Get options from the center object in options
-      const sidePadding = 60;
-      const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
+//       //Get options from the center object in options
+//       const sidePadding = 60;
+//       const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
   
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
-      const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+//       ctx.textAlign = 'center';
+//       ctx.textBaseline = 'middle';
+//       const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+//       const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
   
-      //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
-      const stringWidth = ctx.measureText(txt).width;
-      const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+//       //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+//       const stringWidth = ctx.measureText(txt).width;
+//       const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
   
-      // Find out how much the font can grow in width.
-      const widthRatio = elementWidth / stringWidth;
-      const newFontSize = Math.floor(30 * widthRatio);
-      const elementHeight = (chart.innerRadius * 2);
+//       // Find out how much the font can grow in width.
+//       const widthRatio = elementWidth / stringWidth;
+//       const newFontSize = Math.floor(30 * widthRatio);
+//       const elementHeight = (chart.innerRadius * 2);
   
-      // Pick a new font size so it will not be larger than the height of label.
-      const fontSizeToUse = Math.min(newFontSize, elementHeight);
+//       // Pick a new font size so it will not be larger than the height of label.
+//       const fontSizeToUse = Math.min(newFontSize, elementHeight);
   
-      ctx.font = fontSizeToUse + 'px Arial';
-      ctx.fillStyle = 'black';
+//       ctx.font = fontSizeToUse + 'px Arial';
+//       ctx.fillStyle = 'black';
   
-      // Draw text in center
-      ctx.fillText('8 Solar Cleaners', centerX, centerY);
-    }
-  }];
-}
+//       // Draw text in center
+//       ctx.fillText('8 Solar Cleaners', centerX, centerY);
+//     }
+//   }];
+ }

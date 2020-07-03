@@ -12,8 +12,8 @@
                         [labels]="doughnutChartLabels"
                         [chartType]="doughnutChartType"
                         [colors]="doughnutColor"
-                        [options]="doughnutOption"
-                        [plugins]="doughnutChartPlugins">
+                        [options]="doughnutOption">
+                        <!-- [plugins]="doughnutChartPlugins"> -->
            </canvas>
           
         </mat-card-content>
@@ -31,8 +31,8 @@
                         [labels]="doughnutChartLabels_second"
                         [chartType]="doughnutChartType_second"
                         [colors]="doughnutColor_second"
-                        [options]="doughnutOption_second"
-                        [plugins]="doughnutChartPlugins_second">
+                        [options]="doughnutOption_second">
+                        <!-- [plugins]="doughnutChartPlugins_second"> -->
            </canvas>
         </mat-card-content>
       </mat-card>
@@ -49,8 +49,8 @@
             [labels]="doughnutChartLabels_third"
             [chartType]="doughnutChartType_third"
             [colors]="doughnutColor_third"
-            [options]="doughnutOption_third"
-            [plugins]="doughnutChartPlugins_second">
+            [options]="doughnutOption_third">
+            <!-- [plugins]="doughnutChartPlugins_second"> -->
             </canvas> 
         </mat-card-content>
       </mat-card>
@@ -74,13 +74,42 @@
      fxLayout="row"
      fxLayoutGap=10px>
 
-<div> 
-    table    
-</div>
-
-<div>
- ______Table_____ 
-</div>    
+<!-- <div>
+  <mat-list *ngFor="let element of devices">
+    <mat-list-item> {{element.status}} </mat-list-item>
+    <mat-list-item> {{element.name}} </mat-list-item>
+    <mat-list-item> {{element.modelNo}} </mat-list-item>
+    <mat-list-item> {{element.location}} </mat-list-item>
+    <mat-list-item> {{element.runTime}} </mat-list-item>
+    <mat-list-item> {{element.temperature}} </mat-list-item>
+    <mat-list-item> {{element.humidity}} </mat-list-item>
+    <mat-list-item> {{element.solarVoltage}} </mat-list-item>
+    <mat-list-item> {{element.batteryVoltage}} </mat-list-item>
+ </mat-list> 
+</div>    -->
+<table class="table table-bordered" style="width:100%">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Solar cleaner ID</th>
+      <th>Robot Status</th>
+      <th>Location</th>
+      <th>Cleaner Run Time(min)</th>
+      <th>Solar Cleaner Voltage</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let device of devices">
+        <td>{{device.status}}</td>
+        <!-- <td>{{Tables.data.SLID}}</td> -->
+        <td>{{device.modelNo}}</td>
+        <td>{{device.name}}</td>
+        <!-- <td>{{Tables.data.LOC}}</td>
+        <td>{{Tables.data.CRT}}</td>
+        <td>{{Tables.data.SCV}}</td> -->
+      </tr>
+    </tbody>
+</table> 
 
 </div>
 
