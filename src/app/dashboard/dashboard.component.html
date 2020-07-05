@@ -7,14 +7,14 @@
           <mat-card-title>Solar Cleaners Status</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <canvas baseChart
-                        [data]="doughnutChartData"
+            <!-- <canvas baseChart --> 
+                        <!--  [data]="doughnutChartData"
                         [labels]="doughnutChartLabels"
                         [chartType]="doughnutChartType"
                         [colors]="doughnutColor"
-                        [options]="doughnutOption">
+                        [options]="doughnutOption"> -->
                         <!-- [plugins]="doughnutChartPlugins"> -->
-           </canvas>
+           <!-- </canvas> -->
           
         </mat-card-content>
       </mat-card>
@@ -111,6 +111,16 @@
     </tbody>
 </table> 
 
+<!-- <div id="chart-container">
+  <canvas #myCanvas id="canvas" 
+  baseChart
+  [chartType]="chartType" 
+  [datasets]="chartData"
+  [labels]="chartLabels" 
+  [colors]="chartColors" 
+  [options]="chartOptions">
+  </canvas>
+</div> -->
 </div>
 
 

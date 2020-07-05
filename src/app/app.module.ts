@@ -21,12 +21,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 import { baseURL } from './shared/baseurl';
+import { Solar1Component } from './solar1/solar1.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    Solar1Component
   ],
   imports: [
     BrowserModule,

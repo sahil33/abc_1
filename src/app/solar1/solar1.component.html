@@ -1,0 +1,80 @@
+<div class="wrapper">
+    <div class="row">
+        <mat-card style="width: 70%; margin: 10px 20px; line-height: 40px; background-color: mistyrose;"><p>Solar Cleaners 1</p></mat-card>
+    </div>
+
+    <div class="row">
+        <div class="container80">
+            <mat-card>
+                <canvas #myCanvas id="canvas"
+                baseChart [chartType]="chartType"
+                [datasets]="chartData" 
+                [labels]="chartLabels"
+                [colors]="chartColors"
+                [options]="chartOptions">
+                </canvas>
+            </mat-card>
+            <mat-card>
+                <!-- <canvas #myCanvas id="canvas"
+                baseChart [chartType]="chartType"
+                [datasets]="chartData" 
+                [labels]="chartLabels"
+                [colors]="chartColors"
+                [options]="chartOptions"> -->
+            </mat-card>
+            <mat-card>
+                <!-- <canvas #myCanvas id="canvas"
+                baseChart [chartType]="chartType"
+                [datasets]="chartData" 
+                [labels]="chartLabels"
+                [colors]="chartColors"
+                [options]="chartOptions"> -->
+            </mat-card>
+            <mat-card>
+                <!-- <canvas #myCanvas id="canvas"
+                baseChart [chartType]="chartType"
+                [datasets]="chartData" 
+                [labels]="chartLabels"
+                [colors]="chartColors"
+                [options]="chartOptions"> -->
+            </mat-card>
+
+        </div>
+
+        <div class="container20">
+            <mat-card>
+                <div style="height: 100px; width: 100%;">
+                    <h4>Temerature</h4>
+                    <p><small>Current  Value</small></p>
+                    <h2>26.22</h2>
+                </div>
+            </mat-card>
+            <mat-card>
+                <div  style="height: 100px; width: 100%;">
+                    <h4>Humidity (%)</h4>
+                    <p><small>Current  Value</small></p>
+                    <h2>66.25</h2>
+                </div>
+            </mat-card>
+            <mat-card>
+                <div  style="height: 100px; width: 100%;">
+                    <h4>Battery Volatge(volts)</h4>
+                    <p><small>Current  Value</small></p>
+                    <h2>11.8</h2>
+                </div>
+            </mat-card>
+            <mat-card>
+                <div  style="height: 100px; width: 100%;">
+                    <h4>Solar Voltage (Volts)</h4>
+                    <p><small>Current  Value</small></p>
+                    <h2>11.8</h2>
+                </div>
+            </mat-card>
+        
+        </div>
+    </div>
+           
+</div>           
+    
+
+  

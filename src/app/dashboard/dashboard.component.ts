@@ -1,26 +1,81 @@
-import { Component, OnInit ,Inject} from '@angular/core';
+import { Component, OnInit ,Inject,ViewChild} from '@angular/core';
 import { ChartType } from 'chart.js';
 import { MultiDataSet, Label, PluginServiceGlobalRegistrationAndOptions } from 'ng2-charts';
 import * as Chart from 'chart.js';
 import { Device} from '../shared/device';
 import { DevicesService } from '../services/devices.service';
- 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+  
+  // @ViewChild('myCanvas')
+  // public context: CanvasRenderingContext2D;
+  // public chartType: string = 'line';
+  // public chartData: any[];
+  // public chartLabels: any[];
+  // public chartColors: any[];
+  // public chartOptions: any;
   devices: Device[];
+
   constructor(private devicesService: DevicesService,
     @Inject('BaseURL') private BaseURL) { }
   
   ngOnInit(): void {
-    this.devicesService.getDevices()
-    .subscribe(devices => this.devices = devices);
-    console.log(this.devices);
-     }
+    // this.devicesService.getDevices()
+    // .subscribe(devices => this.devices = devices);
+    // console.log(this.devices);
+    // this.chartData = [{
+    //   data: [3, 1, 4, 2, 5],
+    //   label: 'Anthracnose',
+    //   fill: false
+    // }];
+  }
+  //   this.chartLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
+  //   this.chartColors = [{
+  //     backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  //        borderColor: 'rgba(0, 0, 0, 1)'
+  //   }];
+  //   this.chartOptions = {
+  //     scales: {
+  //       yAxes: [{
+  //         ticks: {
+  //           beginAtZero: true,
+  //           stepSize: 1
+  //         }
+  //       }]
+  //     },
+  //     annotation: {
+  //        drawTime: 'beforeDatasetsDraw',
+  //        annotations: [{
+  //           type: 'box',
+  //           id: 'a-box-1',
+  //           yScaleID: 'y-axis-0',
+  //           yMin: 0,
+  //           yMax: 1,
+  //           backgroundColor: '#4cf03b'
+  //        }, {
+  //           type: 'box',
+  //           id: 'a-box-2',
+  //           yScaleID: 'y-axis-0',
+  //           yMin: 1,
+  //           yMax: 2.7,
+  //           backgroundColor: '#fefe32'
+  //        }, {
+  //           type: 'box',
+  //           id: 'a-box-3',
+  //           yScaleID: 'y-axis-0',
+  //           yMin: 2.7,
+  //           yMax: 5,
+  //           backgroundColor: '#fe3232'
+  //        }]
+  //     }
+  //   }
+  
+  //    }
 
      displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
@@ -200,4 +255,52 @@ public doughnutChartLabels_second = ['Normal Voltage', 'Under Voltage'];
 //       ctx.fillText('8 Solar Cleaners', centerX, centerY);
 //     }
 //   }];
+
+ 
+ public  lineChartType = 'line';
+//  public  lineLabels = ['12:00', '12:10', '12:20', '13:20', '13:30'];
+public lineData = [20,21,22,23];
+public lineDatasets =[{
+  label: 'Temperatures',
+  data: [20, 21, 22, 21, 23],
+  backgroundColor: 'rgba(75,192,192, 0.4)',
+  borderColor: '#4bc0c0',
+  pointBackgroundColor: 'black',
+  tension: 0,
+  fill: false
+}];
+ 
+ public lineOption = {
+  scales: {
+      xAxes: [{
+          type: 'time',
+          scaleLabel: {
+              display: true,
+              labelString: 'Time'
+          },
+          time: {
+              unit: 'minute',
+              unitStepSize: 10,
+              format: "HH:mm",
+              displayFormats: {
+                  minute: 'HH:mm',
+                  hour: 'HH:mm'
+              }
+          }
+      }],
+      yAxes: [{
+          scaleLabel: {
+              display: true,
+              labelString: 'Temp'
+          },
+          ticks: {
+              max: 25,
+              min: 15,
+              stepSize: 1
+          }
+      }]
+  }
+};
+
+
  }
