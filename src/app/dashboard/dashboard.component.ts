@@ -4,6 +4,8 @@ import { MultiDataSet, Label, PluginServiceGlobalRegistrationAndOptions } from '
 import * as Chart from 'chart.js';
 import { Device} from '../shared/device';
 import { DevicesService } from '../services/devices.service';
+import {MatTableDataSource} from '@angular/material/table';
+import { ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +14,10 @@ import { DevicesService } from '../services/devices.service';
 })
 export class DashboardComponent implements OnInit {
   
+
+  displayedColumns: string[] = ['status', 'modelNo','location', 'temperature','voltage'];
+  dataSource = new MatTableDataSource<any>();
+
   // @ViewChild('myCanvas')
   // public context: CanvasRenderingContext2D;
   // public chartType: string = 'line';
@@ -20,20 +26,31 @@ export class DashboardComponent implements OnInit {
   // public chartColors: any[];
   // public chartOptions: any;
   devices: Device[];
+  deviceData: any=[];
 
   constructor(private devicesService: DevicesService,
-    @Inject('BaseURL') private BaseURL) { }
+    @Inject('BaseURL') private BaseURL,private route: ActivatedRoute, private router: Router) { }
   
   ngOnInit(): void {
-    // this.devicesService.getDevices()
-    // .subscribe(devices => this.devices = devices);
-    // console.log(this.devices);
+    this.devicesService.getDevices()
+    .subscribe((devices:any) => {
+      console.log("@@", devices)
+      this.deviceData = devices
+     // this.devices = devices
+     this.dataSource.data = this.deviceData;
+    });
+    console.log(this.dataSource);
     // this.chartData = [{
     //   data: [3, 1, 4, 2, 5],
     //   label: 'Anthracnose',
     //   fill: false
     // }];
+    
+    console.log(this.dataSource);
   }
+  
+ 
+
   //   this.chartLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
   //   this.chartColors = [{
   //     backgroundColor: 'rgba(0, 0, 0, 0.2)',
@@ -77,7 +94,7 @@ export class DashboardComponent implements OnInit {
   
   //    }
 
-     displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+    
 
 
   innerRadius : any;
@@ -301,6 +318,12 @@ public lineDatasets =[{
       }]
   }
 };
-
+ 
+picked : any;
+public highlightSelectedRow(row): void
+    {
+        this.picked = row._id;
+        this.router.navigate(['solar1', this.picked]);
+    }
 
  }

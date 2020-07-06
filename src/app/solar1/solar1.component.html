@@ -5,22 +5,26 @@
 
     <div class="row">
         <div class="container80">
-            <mat-card>
+            <mat-card style="height: 100px; width: 100%;">
                 <canvas #myCanvas id="canvas"
                 baseChart [chartType]="chartType"
                 [datasets]="chartData" 
                 [labels]="chartLabels"
                 [colors]="chartColors"
-                [options]="chartOptions">
+                [options]="chartOptions"
+                style="height: 100px; width: 100%;">
                 </canvas>
             </mat-card>
             <mat-card>
-                <!-- <canvas #myCanvas id="canvas"
-                baseChart [chartType]="chartType"
-                [datasets]="chartData" 
-                [labels]="chartLabels"
-                [colors]="chartColors"
-                [options]="chartOptions"> -->
+                <mat-card>
+                    <canvas #myCanvas1 id="canvas"
+                    baseChart [chartType]="chartType1"
+                    [datasets]="chartData1" 
+                    [labels]="chartLabels1"
+                    [colors]="chartColors1"
+                    [options]="chartOptions1">
+                    </canvas>
+                </mat-card>
             </mat-card>
             <mat-card>
                 <!-- <canvas #myCanvas id="canvas"
