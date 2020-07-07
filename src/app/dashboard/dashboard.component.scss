@@ -9,11 +9,69 @@ mat-card-content{
 table {
     width: 100%;
   }
+  
 
-  * {
-    font-family: Arial;
+  ::ng-deep th.mat-header-cell{
+    width: 140px;
+    min-width: 140px;
+}
+
+h3{
+    font-size:14px;
+    font-family: Verdana,Sans-Serif;
+    text-align:center;
+    font-weight:bold;
+    margin-top:0px;
   }
   
-  h1 {
-    font-size: 16px;
+  
+//   styles for material table
+  
+  .example-container {
+   height: 300px;
+    width: 600px;
+    margin-left: 30px;
+   }
+  
+  
+  mat-table{
+    text-align:center;
+    font-size:11px;
+    font-family: Verdana,Sans-Serif;
+    color: #1a084c;
+    width: 600px;
+      height: 300px;
+      overflow:auto;     
+   }
+ 
+  mat-header-cell, mat-header-row, .mat-header-cell-def{
+    min-height:25px;
+    font-family:Verdana,sans-serif;
+    font-weight:bold;
+    font-size:13px;
+    color: #1a084c;
+    margin-bottom:5px;
+     top: 0;
+      position: sticky;
+      z-index: 1;
+      background-color: inherit;
+  }
+
+  
+  mat-row{
+    min-height:25px;
+    font-family:Verdana,sans-serif;
+    font-size:11px;
+    color: #1a084c;
+    }
+  mat-cell{
+    height:25px;
+    font-family:Verdana,sans-serif;
+    font-size:11px; 
+    color: #1a084c;
+  }
+  
+  th.mat-header-cell {
+    color:#2e5a5a;
+    font-size: 20px;
   }
