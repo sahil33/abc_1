@@ -165,7 +165,7 @@ export class DashboardComponent implements OnInit {
 
       //Get options from the center object in options
       const sidePadding = 60;
-      const sidePaddingCalculated = (sidePadding / 100) 
+      const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2) 
       //* (chart.innerRadius * 2)
 
       ctx.textAlign = 'center';
@@ -175,15 +175,15 @@ export class DashboardComponent implements OnInit {
 
       //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
       const stringWidth = ctx.measureText(txt).width;
-      const elementWidth =  sidePaddingCalculated;
-     // (chart.innerRadius * 2) -
+      const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+    
       // Find out how much the font can grow in width.
       const widthRatio = elementWidth / stringWidth;
       const newFontSize = Math.floor(30 * widthRatio);
-      // const elementHeight = (chart.innerRadius * 2);
+      const elementHeight = (chart.innerRadius * 2);
 
       // Pick a new font size so it will not be larger than the height of label.
-      const fontSizeToUse = Math.min(newFontSize);
+      const fontSizeToUse = Math.min(newFontSize,elementHeight);
       //elementHeight
 
       ctx.font = fontSizeToUse + 'px Arial';
