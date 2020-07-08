@@ -1,6 +1,6 @@
 export class Device {
     status: string;
-    id: string;
+    _id: string;
     name: string;
     modelNo: string;
     location: string;

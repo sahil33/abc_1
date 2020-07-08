@@ -97,69 +97,102 @@ export class DashboardComponent implements OnInit {
     
 
 
-  innerRadius : any;
+//   innerRadius : any;
 
-  // first doughnut
-  public doughnutChartLabels = ['Running', 'Inactive ', 'Inactive '];
-  public doughnutChartData = [100,70,190];
-  public doughnutChartType = 'doughnut';
+//   // first doughnut
+//  // public doughnutChartLabels = ['Running', 'Inactive ', 'Inactive '];
+//   public doughnutChartData = [100,70,190];
+//   public doughnutChartType = 'doughnut';
 
-  public doughnutColor: Array<any> = [
-    { 
-      backgroundColor: ['#ff0000', '#ffff00', '#0080ff']
+//   public doughnutColor: Array<any> = [
+//     { 
+//       backgroundColor: ['#ff0000', '#ffff00', '#0080ff']
+//     }
+//   ];
+
+//   public doughnutOption  = {
+//     legend: {
+//        position: 'right',
+//        boxWidth: 10
+//     },
+//     elements:{
+//       center:{
+//        text:'Red color',
+//        color:'#fff000',
+//        lineHeight: 25,
+//        minFontSize: 20,
+//        sidePadding: 20
+//       }
+//     },
+//     cutoutPercentage: 75
+//   };
+ 
+
+
+
+  public chartType: string = 'doughnut';
+
+  public chartDatasets: Array<any> = [
+    { data: [300, 50, 100, 40, 120], label: 'My First dataset' }
+  ];
+
+  public chartLabels: Array<any> = ['Running', 'Inactive ', 'Inactive '];
+
+  public chartColors: Array<any> = [
+    {
+      backgroundColor: ['#ff0000', '#ffff00', '#0080ff'],
+      hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870'],
+      borderWidth: 2,
     }
   ];
 
-  public doughnutOption  = {
+  public chartOptions: any = {
+    responsive: true,
     legend: {
-       position: 'right',
-       boxWidth: 10
-    },
-    elements:{
-      center:{
-       text:'Red color',
-       color:'#fff000',
-       lineHeight: 25,
-       minFontSize: 20,
-       sidePadding: 20
-      }
-    },
+      position: 'right',
+      boxWidth: 10
+   },
     cutoutPercentage: 75
   };
+  public chartClicked(e: any): void { }
+  public chartHovered(e: any): void { }
+
  
-  // public doughnutChartPlugins: PluginServiceGlobalRegistrationAndOptions[] = [{
-  //   beforeDraw(chart) {
-  //     const ctx = chart.ctx;
-  //     const txt = '8 Solar Cleaners';
+  public doughnutChartPlugins: PluginServiceGlobalRegistrationAndOptions[] = [{
+    beforeDraw(chart) {
+      const ctx = chart.ctx;
+      const txt = '8 Solar Cleaners';
 
-  //     //Get options from the center object in options
-  //     const sidePadding = 60;
-  //     const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
+      //Get options from the center object in options
+      const sidePadding = 60;
+      const sidePaddingCalculated = (sidePadding / 100) 
+      //* (chart.innerRadius * 2)
 
-  //     ctx.textAlign = 'center';
-  //     ctx.textBaseline = 'middle';
-  //     const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
-  //     const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+      const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
 
-  //     //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
-  //     const stringWidth = ctx.measureText(txt).width;
-  //     const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+      //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+      const stringWidth = ctx.measureText(txt).width;
+      const elementWidth =  sidePaddingCalculated;
+     // (chart.innerRadius * 2) -
+      // Find out how much the font can grow in width.
+      const widthRatio = elementWidth / stringWidth;
+      const newFontSize = Math.floor(30 * widthRatio);
+      // const elementHeight = (chart.innerRadius * 2);
 
-  //     // Find out how much the font can grow in width.
-  //     const widthRatio = elementWidth / stringWidth;
-  //     const newFontSize = Math.floor(30 * widthRatio);
-  //     const elementHeight = (chart.innerRadius * 2);
+      // Pick a new font size so it will not be larger than the height of label.
+      const fontSizeToUse = Math.min(newFontSize);
+      //elementHeight
 
-  //     // Pick a new font size so it will not be larger than the height of label.
-  //     const fontSizeToUse = Math.min(newFontSize, elementHeight);
+      ctx.font = fontSizeToUse + 'px Arial';
+      ctx.fillStyle = 'black';
 
-  //     ctx.font = fontSizeToUse + 'px Arial';
-  //     ctx.fillStyle = 'black';
-
-  //     // Draw text in center
-  //     ctx.fillText('8 Solar Cleaners', centerX, centerY);
-  //   }
-  // }];
+      // Draw text in center
+      ctx.fillText('8 Solar Cleaners', centerX, centerY);
+    }
+  }];
 
 
 

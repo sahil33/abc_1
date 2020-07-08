@@ -12,7 +12,7 @@ import { NgModule } from '@angular/core';
  import {MatCardModule} from '@angular/material/card';
  import {MatMenuModule} from '@angular/material/menu';
  import {MatTableModule} from '@angular/material/table';
-
+ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -38,6 +38,7 @@ import { Solar1Component } from './solar1/solar1.component';
     MatListModule,
     MatButtonModule,
     MatMenuModule,
+    MDBBootstrapModule,
     MatCardModule,
     ChartsModule,
     HttpClientModule,
